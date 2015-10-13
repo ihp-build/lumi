@@ -6,7 +6,11 @@
 </div>
 	<div class="max_width">
 		<div class="breadcramp col_padlr_20 clear_fix">
-			<a href="#">Главная</a>
-			<a href="#">Каталог товаров</a>
+			<?$APPLICATION->IncludeComponent("bitrix:breadcrumb","lumi",Array(
+				"START_FROM" => "0", 
+				"PATH" => "", 
+				"SITE_ID" => "s1" 
+				)
+			);?>
 		</div>
 		<h1><?=$APPLICATION->ShowTitle(false);?></h1>

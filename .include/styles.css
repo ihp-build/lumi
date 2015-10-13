@@ -110,6 +110,10 @@ h2,h3{
 	border-bottom-color: #00a2b0;
 }
 
+.nav a.selected {
+	border-bottom-color: #00a2b0;
+}
+
 .nav_opener{
 	display: none;
 	margin-left: 200px;
@@ -571,6 +575,10 @@ h2,h3{
 	text-decoration: none;
 	color: #403f44;
 	margin-left: 5px;
+}
+
+.breadcramp a:first-child {
+	margin-left: 0px;
 }
 
 .breadcramp a:hover{

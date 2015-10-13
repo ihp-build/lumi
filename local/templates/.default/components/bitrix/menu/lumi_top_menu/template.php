@@ -5,7 +5,7 @@
 <?foreach($arResult as $arItem):?>
 
 	<?if ($arItem["PERMISSION"] > "D"):?>
-		<a class="scrolled <?if ($arItem['SELECTED']):?> 'selected'<?endif?>" href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a>
+		<a class="scrolled <?if ($arItem['SELECTED']):?> selected<?endif?>" href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a>
 	<?endif?>
 
 <?endforeach?>
