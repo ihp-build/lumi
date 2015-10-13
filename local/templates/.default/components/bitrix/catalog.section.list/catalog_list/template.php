@@ -12,10 +12,6 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 
-/*echo '<pre>';
-print_r($arResult);
-echo '</pre>';*/
-
 $arViewModeList = $arResult['VIEW_MODE_LIST'];
 
 $arViewStyles = array(
@@ -47,6 +43,9 @@ $arCurView = $arViewStyles[$arParams['VIEW_MODE']];
 $strSectionEdit = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_EDIT");
 $strSectionDelete = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_DELETE");
 $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_CONFIRM'));
+echo '<pre>';
+print_r($arResult);
+echo '</pre>';
 
 ?><div class="<? echo $arCurView['CONT']; ?>"><?
 if ('Y' == $arParams['SHOW_PARENT_NAME'] && 0 < $arResult['SECTION']['ID'])

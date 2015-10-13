@@ -19,7 +19,7 @@ $APPLICATION->SetTitle("Каталог товаров");
 			1 => "",
 		),
 		"SECTION_ID" => $_REQUEST["SECTION_ID"],
-		"SECTION_URL" => "/#SECTION_ID#/",
+		"SECTION_URL" => "",
 		"SECTION_USER_FIELDS" => array(
 			0 => "",
 			1 => "",
