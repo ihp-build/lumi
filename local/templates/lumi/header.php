@@ -58,8 +58,6 @@
 	<script type="text/javascript" src="/.include/scripts.js"></script>
 
 
-
-
 </head>
 <body>
 
