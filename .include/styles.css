@@ -1,9 +1,13 @@
 h1{
 	padding: 10px 20px;
-	font-size: 34px;
+	font-size: 38px;
+	color: #004466;
+	text-transform: uppercase;
 }
 
-
+.hr70px{
+	height: 70px;
+}
 
 a{color: #00a2b0;}
 a:hover{color: #4a4848;}
@@ -107,10 +111,6 @@ h2,h3{
 }
 
 .nav a:hover{
-	border-bottom-color: #00a2b0;
-}
-
-.nav a.selected {
 	border-bottom-color: #00a2b0;
 }
 
@@ -577,10 +577,6 @@ h2,h3{
 	margin-left: 5px;
 }
 
-.breadcramp a:first-child {
-	margin-left: 0px;
-}
-
 .breadcramp a:hover{
 	color: #00a2b0;
 }
@@ -664,4 +660,86 @@ h2,h3{
 	font-size: 13px;
 	line-height: 1.3em;
 	color: #403f44;
+}
+
+.element_image{
+	display: block;
+	width: 100%;
+	height: auto;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+.element_description{
+	font-size: 14px;
+	color: #403f44;
+}
+.element_description h2{
+	color: #00a2b0;
+	text-transform: none;
+	font-size: 30px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	margin-top: 20px;
+}
+
+.element_description h2:first-child{
+	margin-top: 0;
+}
+
+
+.element_description h2:after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: url("./cat_itm_sh.png") center repeat-x;
+}
+
+.element{
+	padding-bottom: 40px;
+	background-position: top center;
+}
+
+.element_props{
+	margin-top: 20px;
+	text-align: center;
+}
+
+.element_props span{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 5px 15px;
+	font-size: 18px;
+}
+.element_props .fa{
+	font-size: 24px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.gray{color: #616161;}
+.blue{color: #01476a;}
+
+.element_price{
+	margin: 30px auto;
+	text-align: center;
+}
+
+.element .catalog_table_item_price{
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+
+.element_moreinfo{
+	display: block;
+	padding: 15px 0;
+	color: #444444;
+	text-align: center;
+}
+
+.element_moreinfo:hover{
+	color: #00a2b0;
 }
