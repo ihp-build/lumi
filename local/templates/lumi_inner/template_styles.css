@@ -8,3 +8,7 @@ html
 {
 	height:100%;
 }
+
+.nav a.selected {
+	border-bottom-color: #00a2b0;
+}

@@ -34,7 +34,7 @@ $APPLICATION->SetTitle("Главная страница");
 
 	</div>
 	<div class="text_center">
-		<a class="main_preim_lnk fancybox" href="./zag.jpg">Узнайте больше о нас</a>
+		<a class="main_preim_lnk fancybox" href="/about/">Узнайте больше о нас</a>
 	</div>
 </div>
 
@@ -133,50 +133,66 @@ $APPLICATION->SetTitle("Главная страница");
 			Компания <b>«Liminera»</b> производит косметику, в основу которой входят уникальные грязи озера Тамбукан. Мы используем все целебные качества природного ресурса, основываясь на научных разработках наших специалистов. Благодаря этому, продукция <b>«Liminera»</b> приобретает непревзойденные косметологические свойства.
 		</div>
 		<div>
-			<a href="/zag.jpg" class="buttonline fancybox">Подробнее</a>
+			<a href="/about/" class="buttonline fancybox">Подробнее</a>
 		</div>
 	</div>
 </div>
 
-<div id="review"></div>
+<div id="review"></div><!-- Отзывы -->
 
-
-<div class="main_rev">
-	<div class="max_width">
-		<h2 class="text_center">Отзывы наших клиентов</h2>
-		<div class="main_rev_arr">
-			<div class="main_rev_slider">
-				<div id="main_rev_slider_disp" class="main_rev_slider_disp">
-					<div class="main_rev_slider_i">
-						<div style="background-image: url('/upl/ph1.jpg')" class="main_rev_slider_i_img"></div>
-						<div class="centered_vertical">
-							Я всегда предпочитала натуральные средства по уходу за кожей, к кремам относилась настороженно, но недавно я стала пользоваться косметикой Liminera - кожа стала более упругой и свежей, спасибо Вам!
-							<i>Татьяна, 48 лет</i>
-						</div>
-					</div>
-					<div class="main_rev_slider_i">
-						<div style="background-image: url('/upl/ph2.jpg')" class="main_rev_slider_i_img"></div>
-						<div class="centered_vertical">
-							Первое, что я попробовала из косметической линии Liminera, было мыло. Оно отличается от всего, что я использовала раньше. Я была удивлена - оно совершенно не сушит кожу!
-							<i>Мария, 34 года</i>
-						</div>
-					</div>
-					<div class="main_rev_slider_i">
-						<div style="background-image: url('/upl/ph3.jpg')" class="main_rev_slider_i_img"></div>
-						<div class="centered_vertical">
-							Недавно я приобрела увлажняющий крем для лица и термальную маску. Нанося средства на кожу, понимаешь, что в ваших руках действительно что-то натуральное, не имеющее резкий запах и не оставляющее толстую "пленку" на лице. Я очень довольна результатами, которые дает Liminera.
-							<i>Самира, 39 лет</i>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="main_rev_arr_l"></div>
-			<div class="main_rev_arr_r"></div>
-		</div>
-		<div class="text_center">
-			<a href="/zag.jpg" class="buttonline fancybox">Подробнее</a>
-		</div>
-	</div>
-</div>
+<?$APPLICATION->IncludeComponent("bitrix:news.list", "review", Array(
+	"IBLOCK_TYPE" => "general",	// Тип информационного блока (используется только для проверки)
+	"IBLOCK_ID" => "2",	// Код информационного блока
+	"NEWS_COUNT" => "10",	// Количество новостей на странице
+	"SORT_BY1" => "SORT",	// Поле для первой сортировки новостей
+	"SORT_ORDER1" => "ASC",	// Направление для первой сортировки новостей
+	"SORT_BY2" => "ID",	// Поле для второй сортировки новостей
+	"SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
+	"FILTER_NAME" => "",	// Фильтр
+	"FIELD_CODE" => array(	// Поля
+		0 => "DETAIL_TEXT",
+		1 => "DETAIL_PICTURE",
+		2 => "",
+	),
+	"PROPERTY_CODE" => array(	// Свойства
+		0 => "",
+		1 => "",
+	),
+	"CHECK_DATES" => "Y",	// Показывать только активные на данный момент элементы
+	"DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
+	"AJAX_MODE" => "N",	// Включить режим AJAX
+	"AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
+	"AJAX_OPTION_STYLE" => "Y",	// Включить подгрузку стилей
+	"AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
+	"CACHE_TYPE" => "A",	// Тип кеширования
+	"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
+	"CACHE_FILTER" => "N",	// Кешировать при установленном фильтре
+	"CACHE_GROUPS" => "Y",	// Учитывать права доступа
+	"PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
+	"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
+	"SET_STATUS_404" => "N",	// Устанавливать статус 404, если не найдены элемент или раздел
+	"SET_TITLE" => "N",	// Устанавливать заголовок страницы
+	"INCLUDE_IBLOCK_INTO_CHAIN" => "N",	// Включать инфоблок в цепочку навигации
+	"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
+	"HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
+	"PARENT_SECTION" => "",	// ID раздела
+	"PARENT_SECTION_CODE" => "",	// Код раздела
+	"INCLUDE_SUBSECTIONS" => "Y",	// Показывать элементы подразделов раздела
+	"PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
+	"DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
+	"DISPLAY_BOTTOM_PAGER" => "N",	// Выводить под списком
+	"PAGER_TITLE" => "Новости",	// Название категорий
+	"PAGER_SHOW_ALWAYS" => "N",	// Выводить всегда
+	"PAGER_DESC_NUMBERING" => "N",	// Использовать обратную навигацию
+	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",	// Время кеширования страниц для обратной навигации
+	"PAGER_SHOW_ALL" => "Y",	// Показывать ссылку "Все"
+	"DISPLAY_DATE" => "Y",	// Выводить дату элемента
+	"DISPLAY_NAME" => "Y",	// Выводить название элемента
+	"DISPLAY_PICTURE" => "Y",	// Выводить изображение для анонса
+	"DISPLAY_PREVIEW_TEXT" => "Y",	// Выводить текст анонса
+	"AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
+	),
+	false
+);?>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
