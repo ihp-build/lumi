@@ -22,7 +22,6 @@ if(isset($_REQUEST['submit'])){?>
 	$name = $_POST["uname"];
 	$email = $_POST["umail"];
 	$message = $_POST["umessage"];
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tmp.tmp', $email);
 
 	// Test input values for errors
 	$errors = array();
