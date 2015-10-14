@@ -2,29 +2,36 @@
 $aMenuLinks = Array(
 
 	Array(
-		"Продукция", 
-		"#products", 
+		"Главная", 
+		"/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Каталог", 
+		"/catalog/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"О компании", 
-		"#about", 
+		"/about/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Отзывы", 
-		"#review", 
+		"о Тамбукане", 
+		"/tambukan/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Контакты", 
-		"#contacts", 
+		"/contacts/", 
 		Array(), 
 		Array(), 
 		"" 

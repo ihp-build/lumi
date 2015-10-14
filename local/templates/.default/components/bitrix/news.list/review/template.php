@@ -29,7 +29,7 @@
 			<div class="main_rev_arr_r"></div>
 		</div>
 		<div class="text_center">
-			<a href="/review/" class="buttonline fancybox">Подробнее</a>
+			<a class="buttonline" onclick="return addReview()">Добавить отзыв</a>
 		</div>
 	</div>
 </div>

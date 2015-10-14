@@ -7,10 +7,10 @@ $APPLICATION->SetTitle("Товар");
 	Array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_DETAIL_TO_SLIDER" => "N",
-		"ADD_ELEMENT_CHAIN" => "N",
+		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_PICT_PROP" => "-",
 		"ADD_PROPERTIES_TO_BASKET" => "Y",
-		"ADD_SECTIONS_CHAIN" => "Y",
+		"ADD_SECTIONS_CHAIN" => "N",
 		"BACKGROUND_IMAGE" => "-",
 		"BASKET_URL" => "/personal/basket.php",
 		"BRAND_USE" => "N",

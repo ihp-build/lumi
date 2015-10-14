@@ -901,6 +901,7 @@ input.button{
 
 .notify{
 		padding:20px;
+		margin: 20px;
 		border: #004268 solid 3px;
 		text-align: center;
 		box-sizing: border-box;

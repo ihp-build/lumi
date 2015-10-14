@@ -68,17 +68,11 @@
 		<div class="col_8 col_padlr_10">
 			<a href="/" class="logo"></a>
 			<div class="nav">
-				<?
-					$top_menu_type = "top";
-
-					if (SITE_TEMPLATE_ID == "lumi_inner")
-						$top_menu_type = "top_inner";
-				?>
 				<?$APPLICATION->IncludeComponent(
 					"bitrix:menu", 
 					"lumi_top_menu", 
 					Array(
-						"ROOT_MENU_TYPE"	=>	$top_menu_type,
+						"ROOT_MENU_TYPE"	=>	'top',
 						"MAX_LEVEL"	=>	"1",
 						"USE_EXT"	=>	"N",
 						"MENU_CACHE_TYPE" => "A",

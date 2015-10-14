@@ -144,7 +144,7 @@ function allElements()
 				</div>
 				<div class="col_3 col_4_w980 col_8_w640 col_pad20">
 					<a onclick="$.fancybox.close()" class="button col_8 col_4_w640 text_center button_line"><i class="fa fa-arrow-left"></i> Продолжить покупки</a>
-					<a class="button col_8 col_4_w640 text_center"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
+					<a class="button col_8 col_4_w640 text_center" onclick="return orderBasket();"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
 				</div>
 			</div>
 		<?
@@ -232,7 +232,7 @@ function allElements()
 
 		<? if ( !isset($_REQUEST['add']) && count($all_elements) ) { ?>
 			<div class="col_3 col_4_w980 col_8_w640 col_pad20">
-				<br /><a class="button col_8 col_4_w640 text_center"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
+				<br /><a class="button col_8 col_4_w640 text_center" onclick="return orderBasket();"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
 			</div>
 		<? } ?>
 

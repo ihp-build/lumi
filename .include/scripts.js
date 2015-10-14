@@ -57,9 +57,19 @@ function removeFromBasket(id){
 	return false;
 }
 
-function addReview(){
-	$.fancybox('/ajax/review.php?submit',{type:'ajax'});
+function orderBasket(){
+	$.fancybox('/ajax/order.php',{type:'ajax'});
 	return false;
 }
 
 /*  // Basket related  */
+
+function addReview(){
+	$.fancybox('/ajax/review.php',{type:'ajax'});
+	return false;
+}
+
+function consultRequest(){
+	$.fancybox('/ajax/consultRequest.php',{type:'ajax'});
+	return false;
+}
