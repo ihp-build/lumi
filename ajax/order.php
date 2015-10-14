@@ -103,7 +103,7 @@ $elements = getCookieElements();
 
 		//Отправка менеджеру
 		$arMailPattern = array(
-			"EMAIL_TO" => "voinovas@kavminkr.ru",
+			"EMAIL_TO" => "voinovas@kavminkr.ru, kmvres@kavminkr.ru",
 			"BCC" => "",
 			"TEXT" => $mail_pattern_manager_content,
 		);
