@@ -46,7 +46,7 @@ $this->setFrameMode(true);
 				<div class="catalog_table_item_price"><?=$arResult['PROPERTIES']['PRICE']['VALUE']?></div>
 				<a href="#" class="button" onclick="return addToBasket(<?=$arResult['ID'];?>);">Добавить в корзину</a>
 			</div>
-			<a href="#" class="element_moreinfo">Узнайте больше у специалиста</a>
+			<a href="#" class="element_moreinfo" onclick="return consultRequest();">Узнайте больше у специалиста</a>
 		</div>
 		<div class="col_4 col_8_w760 col_pad20 element_description">
 			<?if (!empty($arResult['DETAIL_TEXT'])):?>
