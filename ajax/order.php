@@ -1,8 +1,11 @@
 <?require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");?>
 <?if(isset($_REQUEST['isorder'])){?>
-	<pre>
-	<?print_r($_REQUEST)?>
-	</pre>
+
+	<div class="basket_display">
+	<h3>Спасибо</h3>
+	наши специалисты свяжутся с вами
+	</div>
+
 <?return;}?>
 
 <div class="basket_display">

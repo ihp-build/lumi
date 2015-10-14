@@ -16,6 +16,7 @@ $(document).ready(function(){
 		period:5000,
 	})
 
+
 	$('.nav_opener').click(function(){
 		$('.nav').addClass('showed');
 		$('body').addClass('flowed');
@@ -48,6 +49,16 @@ function addToBasket(id){
 
 function showBasket(){
 	$.fancybox('/ajax/basket.php', {margin:0, leftRatio:1, closeBtn:false, type:'ajax', helpers:{overlay:{locked:true}}});
+	return false;
+}
+
+function removeFromBasket(id){
+	$.fancybox('/ajax/basket.php?remove&element_id='+id, {margin:0, leftRatio:1, closeBtn:false, type:'ajax', helpers:{overlay:{locked:true}}});
+	return false;
+}
+
+function addReview(){
+	$.fancybox('/ajax/review.php?submit',{type:'ajax'});
 	return false;
 }
 

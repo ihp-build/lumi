@@ -11,9 +11,11 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-// echo '<pre>';
-// print_r($arResult['ITEMS']);
-// echo '</pre>';
+// if ($USER->isAdmin()){
+	// echo '<pre>';
+	// print_r($arResult['ITEMS']);
+	// echo '</pre>';
+// }
 ?>
 
 <?if (!empty($arResult['ITEMS'])):?>
@@ -32,7 +34,11 @@ $this->setFrameMode(true);
 		$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], $strElementDelete, $arElementDeleteParams);
 		$strMainID = $this->GetEditAreaId($arItem['ID']);?>
 		<div class="catalog_table_item col_4 col_8_w980" id="<?=$strMainID?>">
-			<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="catalog_table_item_img col_4 col_8_w480" style="background-image: url('<?=$arItem['PREVIEW_PICTURE']['SRC']?>')"></a>
+			<?if (!empty($arItem['PROPERTIES']['PICVSLEAVES']['VALUE'])):?>
+				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="catalog_table_item_img col_4 col_8_w480" style="background-image: url('<?=CFile::GetPath($arItem['PROPERTIES']['PICVSLEAVES']['VALUE'])?>')"></a>
+			<?else:?>
+				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="catalog_table_item_img col_4 col_8_w480" style="background-image: url('<?=$arItem['PREVIEW_PICTURE']['SRC']?>')"></a>
+			<?endif;?>
 			<div class="catalog_table_item_text col_4 col_8_w480">
 				<a href="<?=$arItem['DETAIL_PAGE_URL']?>"  class="catalog_table_item_name"><?=$arItem['NAME']?></a>
 				<div class="catalog_table_item_txt">

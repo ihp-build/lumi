@@ -1,6 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-<h3>В корзине товаров: <?=count($arParams['ALL_ELEMENTS']);?></h3>
 <div class="basket_slider">
 	<div class="basket_slider_display">
 
@@ -28,8 +27,9 @@
 					<div class="basket_addedd_name"><?=$arItem['NAME']?></div>
 				</a>
 				<div class="text_center">
-					<div class="catalog_table_item_price"><?=$asItem['PROPERTIES']['PRICE']['VALUE']?></div>
+					<div class="catalog_table_item_price"><?=$arItem['PROPERTIES']['PRICE']['VALUE']?></div>
 					<div class="basket_addedd_quality"> x <?=$quantity?> шт.</div>
+					<div class="basket_delete_element"><a href="#" title="удалить" onclick="return removeFromBasket(<?=$arItem['ID']?>);">удалить</a></div>
 				</div>
 			</div>
 		<?

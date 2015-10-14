@@ -12,11 +12,11 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 
-if ($USER->isAdmin()) {
-	echo '<pre>';
-	print_r($arResult);
-	echo '</pre>';
-}
+// if ($USER->isAdmin()) {
+	// echo '<pre>';
+	// print_r($arResult);
+	// echo '</pre>';
+// }
 ?>
 <div class="element" style="background-image: url('')">
 	<?$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], $strElementEdit);
@@ -25,10 +25,11 @@ if ($USER->isAdmin()) {
 	<div class="max_width clear_fix" id="<?=$strMainID?>">
 		<!--<h1>Каталог товаров:</h1>-->
 		<div class="col_4 col_8_w760 col_pad20">
-			<?if ($arResult['PREVIEW_PICTURE']['SRC']):?>
-			
+			<?if (!empty($arResult['DETAIL_PICTURE'])):?>
+				<img class="element_image" src="<?=$arResult['DETAIL_PICTURE']['SRC']?>" alt=""/>
+			<?else:?>
+				<img class="element_image" src="<?=$arResult['PREVIEW_PICTURE']['SRC']?>" alt=""/>
 			<?endif;?>
-			<img class="element_image" src="<?=$arResult['PREVIEW_PICTURE']['SRC']?>" alt=""/>
 			<div class="element_props">
 			<?if (is_array($arResult['PROPERTIES']['GREY_PROP']['~VALUE'])):?>
 				<?foreach ($arResult['PROPERTIES']['GREY_PROP']['~VALUE'] as $vGrey):?>

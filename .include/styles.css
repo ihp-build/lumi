@@ -39,6 +39,10 @@ h2,h3{
 	font-size: 12px;
 }
 
+input.button{
+	border: none;
+}
+
 .button:hover{
 	color: #ffffff;
 	background: #00a2b0;
@@ -666,6 +670,7 @@ h2,h3{
 	color: #003556;
 	margin: -15px -20px 0 -20px;
 	padding: 15px 20px;
+	text-decoration:none;
 }
 
 .catalog_table_item_name:hover{
@@ -767,6 +772,10 @@ h2,h3{
 .basket_display{
 	padding: 20px 40px;
 	max-width: 800px;
+	width:100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box; /*Firefox 1-3*/
+	-webkit-box-sizing: border-box; /* Safari */
 }
 .basket_display h3{
 	font-size: 24px;
@@ -818,7 +827,9 @@ h2,h3{
 	font-family: 'Forum', "Times New Roman", serif;
 }
 
-.basket{}
+.basket{
+	min-width: 750px;
+}
 .basket_slider{
 	overflow: hidden;
 	padding: 0 20px;
@@ -886,4 +897,47 @@ h2,h3{
 .basket_full b{
 	font-size: 26px;
 	color: #00a2b0;
+}
+
+.notify{
+		padding:20px;
+		border: #004268 solid 3px;
+		text-align: center;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box; /*Firefox 1-3*/
+		-webkit-box-sizing: border-box; /* Safari */
+}
+
+.form_opened{
+	width:100%;
+	max-width:480px;
+	text-align: center;
+}
+
+.form_opened_head{
+	font-size:33px;
+	font-family: 'Forum', "Times New Roman", serif;
+	text-align:center;
+	margin: 20px 0;
+}
+
+.form_opened input, .form_opened textarea{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box; /*Firefox 1-3*/
+	-webkit-box-sizing: border-box; /* Safari */
+	width:100%;
+	font-size:14px;
+	font-family: dincyr, Verdana, Helvetica;
+	padding:10px;
+	margin:12px 0;
+	border: solid 1px #444444;
+}
+
+.form_opened textarea{
+	height: 140px;
+}
+
+.form_opened input[type="submit"]{
+	width: auto;
+	display: inline-block;
 }

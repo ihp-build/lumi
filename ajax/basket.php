@@ -1,28 +1,13 @@
 <?require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");?>
+
+<script>
+var basketSlide = itBeSlider({
+	display:$('.basket_slider_display'),
+})
+</script>
 <?
 
 CModule::IncludeModule("iblock");
-
-function allElements()
-{
-	if (isset($_COOKIE['basket_elements']))
-	{
-		$all_elements = array();
-
-		$basket = rtrim($_COOKIE['basket_elements'], ',');
-		$basket_array = explode(',', $basket);
-		foreach ($basket_array as $b_key => $b_value)
-		{
-			$b_value_array = explode('x', $b_value);
-			$val_id = $b_value_array[0];
-			$val_quantity = $b_value_array[1];
-
-			$all_elements[] = array('element_id' => $val_id, 'quantity' => $val_quantity);
-		}
-		return $all_elements;
-	}
-	return array();
-}
 
 function addToBasket()
 {
@@ -30,6 +15,7 @@ function addToBasket()
 	{
 		$element_id = $_REQUEST['element_id'];
 		$current_quantity = 1;
+		$all_elements = array();
 		
 		if (isset($_COOKIE['basket_elements']))
 		{
@@ -54,20 +40,24 @@ function addToBasket()
 				}
 
 				$obj .= $val_id . 'x' . $val_quantity . ',';
+				$all_elements[] = array('element_id' => $val_id, 'quantity' => $val_quantity);
 
 			}
 
 			if ($never_added)
+			{
 				$obj .= $element_id . 'x' . '1,';
+				$all_elements[] = array('element_id' => $element_id, 'quantity' => '1');
+			}
 
-			setcookie('basket_elements', $obj, time()+3600000, '/');
-			return array('element_id' => $element_id, 'quantity' => $current_quantity);
+			setcookie('basket_elements', $obj, time()+36000000, '/');
+			return array('element_id' => $element_id, 'quantity' => $current_quantity, "all_elements" => $all_elements);
 		}
 		else
 		{
 			$obj = $element_id . 'x' . '1,';
-			setcookie('basket_elements', $obj, time()+3600000, '/');
-			return array('element_id' => $element_id, 'quantity' => $current_quantity, "all_elements" => array("element"));
+			setcookie('basket_elements', $obj, time()+36000000, '/');
+			return array('element_id' => $element_id, 'quantity' => $current_quantity, "all_elements" => array(array('element_id' => $element_id, 'quantity' => '1')));
 		}
 	}
 	return array();
@@ -75,6 +65,58 @@ function addToBasket()
 
 $element_cookie_data = addToBasket();
 
+
+function removeFromBasket()
+{
+	if (isset($_REQUEST['remove']) && isset($_REQUEST['element_id']))
+	{
+		$element_id = $_REQUEST['element_id'];
+
+		if (isset($_COOKIE['basket_elements']))
+		{
+			$basket = rtrim($_COOKIE['basket_elements'], ',');
+			$basket_array = explode(',', $basket);
+
+			$obj = '';
+			foreach ($basket_array as $b_key => $b_value)
+			{
+				$b_value_array = explode('x', $b_value);
+				$val_id = $b_value_array[0];
+				$val_quantity = $b_value_array[1];
+
+				if ( $val_id == $element_id )
+					continue;
+
+				$obj .= $val_id . 'x' . $val_quantity . ',';
+			}
+
+			setcookie('basket_elements', $obj, time()+36000000, '/');
+			header("Location: /ajax/basket.php");
+
+		}
+	}
+}
+
+$check_remove_action = removeFromBasket();
+
+function allElements()
+{
+	if (isset($_COOKIE['basket_elements']))
+	{
+		$all_elements = array();
+		$basket = rtrim($_COOKIE['basket_elements'], ',');
+		$basket_array = explode(',', $basket);
+		foreach ($basket_array as $b_key => $b_value)
+		{
+			$b_value_array = explode('x', $b_value);
+			$val_id = $b_value_array[0];
+			$val_quantity = $b_value_array[1];
+			$all_elements[] = array('element_id' => $val_id, 'quantity' => $val_quantity);
+		}
+		return $all_elements;
+	}
+	return array();
+}
 
 ?>
 
@@ -111,8 +153,14 @@ $element_cookie_data = addToBasket();
 	<? } ?>
 	<div class="basket">
 		<?
-		$all_elements = allElements();
-		if ( $all_elements )
+		if ($element_cookie_data)
+			$all_elements = $element_cookie_data['all_elements'];
+		else
+			$all_elements = allElements();
+		?>
+		<h3>В корзине товаров: <?=count($all_elements);?></h3>
+		<?
+		if ( count($all_elements) > 0 )
 		{
 			$ids = array();
 			foreach ($all_elements as $iter_key => $iter_value)
@@ -148,7 +196,7 @@ $element_cookie_data = addToBasket();
 			"AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
 			"AJAX_OPTION_STYLE" => "Y",	// Включить подгрузку стилей
 			"AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
-			"CACHE_TYPE" => "A",	// Тип кеширования
+			"CACHE_TYPE" => "N",	// Тип кеширования
 			"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
 			"CACHE_FILTER" => "N",	// Кешировать при установленном фильтре
 			"CACHE_GROUPS" => "Y",	// Учитывать права доступа
@@ -182,7 +230,7 @@ $element_cookie_data = addToBasket();
 		}
 		?>
 
-		<? if ( !isset($_REQUEST['add']) ) { ?>
+		<? if ( !isset($_REQUEST['add']) && count($all_elements) ) { ?>
 			<div class="col_3 col_4_w980 col_8_w640 col_pad20">
 				<br /><a class="button col_8 col_4_w640 text_center"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
 			</div>
