@@ -5,6 +5,10 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("Главная страница");
 ?>
 
+<?/*
+$.fancybox('/ajax/basket.php',{type:'ajax',leftRatio:1,margin:0,padding:0,closeBtn:false, maxWidth:'80%',helpers:{overlay: {locked:true}}});
+*/?>
+
 <div id="slider" class="slider clear_fix">
 	<a class="slider_item fancybox" href="/zag.jpg"><img src="/upl/b2.jpg" alt=""/></a>
 	<a class="slider_item fancybox" href="/zag.jpg"><img src="/upl/b1.jpg" alt=""/></a>

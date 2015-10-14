@@ -36,11 +36,31 @@ h2,h3{
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+	font-size: 12px;
 }
 
 .button:hover{
 	color: #ffffff;
 	background: #00a2b0;
+}
+
+.button .fa{
+	font-size: 20px;
+	vertical-align: baseline;
+	display: inline-block;
+	margin-right: 6px;
+}
+
+.button_line{}
+.button.button_line{
+	background: none;
+	border: solid 1px #004268;
+	color: #004268;
+	padding: 14px 19px;
+}
+.button.button_line:hover{
+	border-color: #00a2b0;
+	color: #00a2b0;
 }
 
 
@@ -634,8 +654,8 @@ h2,h3{
 }
 
 .catalog_table_item_price:after{
-	content: "руб.";
-	font-size: 24px;
+	content: " руб.";
+	font-size: 70%;
 	color: #444444;
 }
 

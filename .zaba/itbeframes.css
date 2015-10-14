@@ -15,7 +15,7 @@
 .col_7{width: 87.5%;}
 .col_8{width: 100%;}
 
-.col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8{
+.col_0, .col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8{
 	box-sizing: border-box;
 	-moz-box-sizing: border-box; /*Firefox 1-3*/
 	-webkit-box-sizing: border-box; /* Safari */
@@ -42,6 +42,18 @@
 	.col_6_w1280{width: 75% !important;}
 	.col_7_w1280{width: 87.5% !important;}
 	.col_8_w1280{width: 100% !important;}
+
+	.col_0_w1280,
+	.col_1_w1280,
+	.col_2_w1280,
+	.col_3_w1280,
+	.col_4_w1280,
+	.col_5_w1280,
+	.col_6_w1280,
+	.col_7_w1280,
+	.col_8_w1280{
+		display: block !important;
+	}
 }
 
 .col_0_w980{}
@@ -64,6 +76,18 @@
 	.col_6_w980{width: 75% !important;}
 	.col_7_w980{width: 87.5% !important;}
 	.col_8_w980{width: 100% !important;}
+
+	.col_0_w980,
+	.col_1_w980,
+	.col_2_w980,
+	.col_3_w980,
+	.col_4_w980,
+	.col_5_w980,
+	.col_6_w980,
+	.col_7_w980,
+	.col_8_w980{
+		display: block !important;
+	}
 }
 
 .col_0_w760{}
@@ -86,6 +110,18 @@
 	.col_6_w760{width: 75% !important;}
 	.col_7_w760{width: 87.5% !important;}
 	.col_8_w760{width: 100% !important;}
+
+	.col_0_w760,
+	.col_1_w760,
+	.col_2_w760,
+	.col_3_w760,
+	.col_4_w760,
+	.col_5_w760,
+	.col_6_w760,
+	.col_7_w760,
+	.col_8_w760{
+		display: block !important;
+	}
 }
 
 .col_0_w640{}
@@ -108,6 +144,18 @@
 	.col_6_w640{width: 75% !important;}
 	.col_7_w640{width: 87.5% !important;}
 	.col_8_w640{width: 100% !important;}
+
+	.col_0_w640,
+	.col_1_w640,
+	.col_2_w640,
+	.col_3_w640,
+	.col_4_w640,
+	.col_5_w640,
+	.col_6_w640,
+	.col_7_w640,
+	.col_8_w640{
+		display: block !important;
+	}
 }
 
 .col_0_w480{}
@@ -130,6 +178,18 @@
 	.col_6_w480{width: 75% !important;}
 	.col_7_w480{width: 87.5% !important;}
 	.col_8_w480{width: 100% !important;}
+
+	.col_0_w480,
+	.col_1_w480,
+	.col_2_w480,
+	.col_3_w480,
+	.col_4_w480,
+	.col_5_w480,
+	.col_6_w480,
+	.col_7_w480,
+	.col_8_w480{
+		display: block !important;
+	}
 }
 
 .col_0_w360{}
@@ -152,4 +212,16 @@
 	.col_6_w360{width: 75% !important;}
 	.col_7_w360{width: 87.5% !important;}
 	.col_8_w360{width: 100% !important;}
+
+	.col_0_w360,
+	.col_1_w360,
+	.col_2_w360,
+	.col_3_w360,
+	.col_4_w360,
+	.col_5_w360,
+	.col_6_w360,
+	.col_7_w360,
+	.col_8_w360{
+		display: block !important;
+	}
 }

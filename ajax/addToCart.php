@@ -35,7 +35,7 @@ if (isset($_REQUEST['add']) && isset($_REQUEST['element_id']))
 
 		$json_object = json_encode($json_res_copy);
 		
-		setcookie('cart_elements', $json_object, time()+3600);  /* expire in 1 hour */
+		setcookie('cart_elements', $json_object, time()+3600, '/');  /* expire in 1 hour */
 		echo "{'added': 'true', 'element_id': '".$element_id."', 'quantity': '".(string)$current_quantity."'}";
 	}
 	else
@@ -44,7 +44,7 @@ if (isset($_REQUEST['add']) && isset($_REQUEST['element_id']))
 		$json_res[] = array("element_id" => $element_id, "quantity" => 1);
 
 		$json_object = json_encode($json_res);
-		setcookie('cart_elements', $json_object, time()+3600);  /* expire in 1 hour */
+		setcookie('cart_elements', $json_object, time()+3600, '/');  /* expire in 1 hour */
 		echo "{'added': 'true', 'element_id': '".$element_id."', 'quantity': '1'}";
 	}
 }
