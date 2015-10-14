@@ -41,7 +41,7 @@ $this->setFrameMode(true);
 
 				<div class="catalog_table_item_price"><?=$arItem['PROPERTIES']['PRICE']['VALUE']?></div>
 				<!--<span class="button">1</span>-->
-				<a class="button" href="#">Добавить в корзину</a>
+				<a href="#" class="button" onclick="return addToBasket(<?=$arItem['ID'];?>);">Добавить в корзину</a>
 			</div>
 		</div>
 	<?endforeach;?>

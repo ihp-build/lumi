@@ -95,7 +95,7 @@
 				<div class="centered_vertical text_right">
 					<div class="header_per clear_fix">
 						<a href="/zag.jpg" class="header_per_u fancybox">Вход/Регистрация</a>
-						<a href="/cart/" class="header_per_b fancybox">Корзина</a>
+						<a href="#" class="header_per_b" onclick="return showBasket();">Корзина</a>
 					</div>
 					<div class="header_phone">
 						<?$APPLICATION->IncludeFile(

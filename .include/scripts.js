@@ -39,3 +39,16 @@ function getPrlxTop(el){
 		}
 }
 
+/* Basket related */
+
+function addToBasket(id){
+	$.fancybox('/ajax/basket.php?add&element_id='+id, {margin:0, leftRatio:1, closeBtn:false, type:'ajax', helpers:{overlay:{locked:true}}});
+	return false;
+}
+
+function showBasket(){
+	$.fancybox('/ajax/basket.php', {margin:0, leftRatio:1, closeBtn:false, type:'ajax', helpers:{overlay:{locked:true}}});
+	return false;
+}
+
+/*  // Basket related  */

@@ -1,171 +1,192 @@
-<style>
-	.basket_display{
-		padding: 20px 40px;
-		max-width: 800px;
-	}
-	.basket_display h3{
-		font-size: 24px;
-		text-align: center;
-		margin: 20px auto;
-		color: #444444;
-	}
-	.basket_addedd_img{
-		width: auto;
-		height: auto;
-		max-width: 280px;
-		margin: 0 auto;
-		display: block;
-		max-height: 280px;
-	}
+<?require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");?>
+<?
 
-	.basket_addedd{
-		border-bottom: solid #7c7c7c 1px;
-		margin-bottom: 20px;
-		padding-bottom: 20px;
-		padding-left: 20px;
-	}
+CModule::IncludeModule("iblock");
 
-	.basket_addedd h3{
-		color: #00a2b0;
-	}
+function allElements()
+{
+	if (isset($_COOKIE['basket_elements']))
+	{
+		$all_elements = array();
 
-	.basket_addedd .button{
-		margin: 5px 0;
-	}
+		$basket = rtrim($_COOKIE['basket_elements'], ',');
+		$basket_array = explode(',', $basket);
+		foreach ($basket_array as $b_key => $b_value)
+		{
+			$b_value_array = explode('x', $b_value);
+			$val_id = $b_value_array[0];
+			$val_quantity = $b_value_array[1];
 
-	.basket_addedd_name{
-		color: #003c5e;
-		font-size: 18px;
-		text-align: center;
-		margin: 15px 0;
+			$all_elements[] = array('element_id' => $val_id, 'quantity' => $val_quantity);
+		}
+		return $all_elements;
 	}
-	.basket_addedd .catalog_table_item_price{
-		font-size: 36px;
-		display: inline-block;
-		margin: 0;
-	}
+	return array();
+}
 
-	.basket_addedd_quality{
-		display: inline-block;
-		font-size: 24px;
-		color: ##444444;
-		line-height: 1em;
-		font-family: 'Forum', "Times New Roman", serif;
-	}
+function addToBasket()
+{
+	if (isset($_REQUEST['add']) && isset($_REQUEST['element_id']))
+	{
+		$element_id = $_REQUEST['element_id'];
+		$current_quantity = 1;
+		
+		if (isset($_COOKIE['basket_elements']))
+		{
+			$basket = rtrim($_COOKIE['basket_elements'], ',');
+			$basket_array = explode(',', $basket);
 
-	.basket{}
-	.basket_slider{
-		overflow: hidden;
-		padding: 0 20px;
-	}
+			$obj = '';
+			$never_added = true;
+			foreach ($basket_array as $b_key => $b_value)
+			{
+				$b_value_array = explode('x', $b_value);
+				$val_id = $b_value_array[0];
+				$val_quantity = $b_value_array[1];
 
-	.basket_slider_display{
-		width: 10000%;
-	}
+				if ( $val_id == $element_id )
+				{
+					$never_added = false;
 
-	.basket_slider_item{
-		display: block;
-		width: 0.3333%;
-		padding: 10px;
-		box-sizing: border-box;
-		-moz-box-sizing: border-box; /*Firefox 1-3*/
-		-webkit-box-sizing: border-box; /* Safari */
-		float: left;
-	}
+					$val_quantity = intval($val_quantity) + 1;
+					$val_quantity = (string)$val_quantity;
+					$current_quantity = $val_quantity;
+				}
 
-	@media (max-width: 640px) {
-		.basket_slider_item{
-			width: 0.5%;
+				$obj .= $val_id . 'x' . $val_quantity . ',';
+
+			}
+
+			if ($never_added)
+				$obj .= $element_id . 'x' . '1,';
+
+			setcookie('basket_elements', $obj, time()+3600000, '/');
+			return array('element_id' => $element_id, 'quantity' => $current_quantity);
+		}
+		else
+		{
+			$obj = $element_id . 'x' . '1,';
+			setcookie('basket_elements', $obj, time()+3600000, '/');
+			return array('element_id' => $element_id, 'quantity' => $current_quantity, "all_elements" => array("element"));
 		}
 	}
-	@media (max-width: 480px) {
-		.basket_slider_item{
-			width: 1%;
-		}
-	}
+	return array();
+}
 
-	.basket_slider_item_img{
-		height: 140px;
-		background-position: bottom center;
-		background-repeat: no-repeat;
-		background-size: contain;
-	}
-	.basket_slider_item .basket_addedd_name{
-		font-size: 16px;
-		margin-bottom: 0;
-	}
-
-	.basket_slider_item .catalog_table_item_price{
-		font-size: 24px;
-		display: inline-block;
-	}
-
-	.basket_slider_item .basket_addedd_quality{
-		font-size: 20px;
-	}
-
-	.basket_slider_item a{
-		display: block;
-		text-decoration: none;
-	}
-
-	.basket_full{
-		border-top: solid #7c7c7c 1px;
-		margin-top: 20px;
-		padding-top: 20px;
-		font-family: 'Forum', "Times New Roman", serif;
-		text-align: center;
-		font-size: 20px;
-	}
-
-	.basket_full b{
-		font-size: 26px;
-		color: #00a2b0;
-	}
+$element_cookie_data = addToBasket();
 
 
-</style>
+?>
 
 <div class="basket_display">
-	<div class="basket_addedd clear_fix">
-		<h3>Товар добавлен в корзину</h3>
-		<div class="col_5 col_4_w980 col_8_w640">
-			<img src="../upl/el1.jpg" class="basket_addedd_img" alt=""/>
-			<div class="basket_addedd_name">Грязная грязь</div>
-			<div class="text_center">
-				<div class="catalog_table_item_price">350</div>
-				<div class="basket_addedd_quality"> x 2 шт.</div>
-			</div>
-		</div>
-		<div class="col_3 col_4_w980 col_8_w640 col_pad20">
-			<a onclick="$.fancybox.close()" class="button col_8 col_4_w640 text_center button_line"><i class="fa fa-arrow-left"></i> Продолжить покупки</a>
-			<a class="button col_8 col_4_w640 text_center"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
-		</div>
-	</div>
-	<div class="basket">
-		<h3>В корзине товаров: 5</h3>
-		<div class="basket_slider">
-			<div class="basket_slider_display">
-				<div class="basket_slider_item">
-					<a href="#">
-						<div class="basket_slider_item_img" style="background-image: url('../upl/el1.jpg')"></div>
-						<div class="basket_addedd_name">Грязная грязь</div>
-					</a>
+	<? if ( $element_cookie_data ) { ?>
+
+		<?
+		$element_id = $_REQUEST['element_id'];
+
+		$arSelect = Array("ID", "NAME", "PREVIEW_PICTURE", "PROPERTY_PRICE");
+		$arFilter = Array("IBLOCK_ID" => "1", "ID" => $element_id, "ACTIVE"=>"Y");
+		$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>50), $arSelect);
+		while($arFields = $res->Fetch())
+		{
+			?>
+			<div class="basket_addedd clear_fix">
+				<h3>Товар добавлен в корзину</h3>
+				<div class="col_5 col_4_w980 col_8_w640">
+					<img src="<?=CFile::GetPath($arFields['PREVIEW_PICTURE']);?>" class="basket_addedd_img" alt=""/>
+					<div class="basket_addedd_name"><?=$arFields['NAME'];?></div>
 					<div class="text_center">
-						<div class="catalog_table_item_price">350</div>
-						<div class="basket_addedd_quality"> x 2 шт.</div>
+						<div class="catalog_table_item_price"><?=$arFields['PROPERTY_PRICE_VALUE']?></div>
+						<div class="basket_addedd_quality"> x <?=$element_cookie_data['quantity']?> шт.</div>
 					</div>
 				</div>
-
-
-				<div class="basket_slider_item"><a href="#"><div class="basket_slider_item_img" style="background-image: url('../upl/el1.jpg')"></div><div class="basket_addedd_name">Грязная грязь</div></a><div class="text_center"><div class="catalog_table_item_price">350</div><div class="basket_addedd_quality"> x 2 шт.</div></div></div>
-				<div class="basket_slider_item"><a href="#"><div class="basket_slider_item_img" style="background-image: url('../upl/el1.jpg')"></div><div class="basket_addedd_name">Грязная грязь</div></a><div class="text_center"><div class="catalog_table_item_price">350</div><div class="basket_addedd_quality"> x 2 шт.</div></div></div>
-				<div class="basket_slider_item"><a href="#"><div class="basket_slider_item_img" style="background-image: url('../upl/el1.jpg')"></div><div class="basket_addedd_name">Грязная грязь</div></a><div class="text_center"><div class="catalog_table_item_price">350</div><div class="basket_addedd_quality"> x 2 шт.</div></div></div>
-				<div class="basket_slider_item"><a href="#"><div class="basket_slider_item_img" style="background-image: url('../upl/el1.jpg')"></div><div class="basket_addedd_name">Грязная грязь</div></a><div class="text_center"><div class="catalog_table_item_price">350</div><div class="basket_addedd_quality"> x 2 шт.</div></div></div>
+				<div class="col_3 col_4_w980 col_8_w640 col_pad20">
+					<a onclick="$.fancybox.close()" class="button col_8 col_4_w640 text_center button_line"><i class="fa fa-arrow-left"></i> Продолжить покупки</a>
+					<a class="button col_8 col_4_w640 text_center"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
+				</div>
 			</div>
-		</div>
-		<div class="basket_full">
-			Общая сумма покупок: <b>1600</b> руб.
-		</div>
+		<?
+		}
+		?>
+	<? } ?>
+	<div class="basket">
+		<?
+		$all_elements = allElements();
+		if ( $all_elements )
+		{
+			$ids = array();
+			foreach ($all_elements as $iter_key => $iter_value)
+			{
+				$ids[] = $iter_value['element_id'];
+			}
+			global $basketFilter;
+			$basketFilter = array('ID' => $ids);
+
+			?>
+			<?$APPLICATION->IncludeComponent("bitrix:news.list", "basket_content", Array(
+			"ALL_ELEMENTS" => $all_elements,
+			"IBLOCK_TYPE" => "general",	// Тип информационного блока (используется только для проверки)
+			"IBLOCK_ID" => "1",	// Код информационного блока
+			"NEWS_COUNT" => "100",	// Количество новостей на странице
+			"SORT_BY1" => "SORT",	// Поле для первой сортировки новостей
+			"SORT_ORDER1" => "ASC",	// Направление для первой сортировки новостей
+			"SORT_BY2" => "ID",	// Поле для второй сортировки новостей
+			"SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
+			"FILTER_NAME" => "basketFilter",	// Фильтр
+			"FIELD_CODE" => array(	// Поля
+				0 => "DETAIL_TEXT",
+				1 => "DETAIL_PICTURE",
+				2 => "",
+			),
+			"PROPERTY_CODE" => array(	// Свойства
+				0 => "PRICE",
+				1 => "",
+			),
+			"CHECK_DATES" => "Y",	// Показывать только активные на данный момент элементы
+			"DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
+			"AJAX_MODE" => "N",	// Включить режим AJAX
+			"AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
+			"AJAX_OPTION_STYLE" => "Y",	// Включить подгрузку стилей
+			"AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
+			"CACHE_TYPE" => "A",	// Тип кеширования
+			"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
+			"CACHE_FILTER" => "N",	// Кешировать при установленном фильтре
+			"CACHE_GROUPS" => "Y",	// Учитывать права доступа
+			"PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
+			"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
+			"SET_STATUS_404" => "N",	// Устанавливать статус 404, если не найдены элемент или раздел
+			"SET_TITLE" => "N",	// Устанавливать заголовок страницы
+			"INCLUDE_IBLOCK_INTO_CHAIN" => "N",	// Включать инфоблок в цепочку навигации
+			"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
+			"HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
+			"PARENT_SECTION" => "",	// ID раздела
+			"PARENT_SECTION_CODE" => "",	// Код раздела
+			"INCLUDE_SUBSECTIONS" => "Y",	// Показывать элементы подразделов раздела
+			"PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
+			"DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
+			"DISPLAY_BOTTOM_PAGER" => "N",	// Выводить под списком
+			"PAGER_TITLE" => "Новости",	// Название категорий
+			"PAGER_SHOW_ALWAYS" => "N",	// Выводить всегда
+			"PAGER_DESC_NUMBERING" => "N",	// Использовать обратную навигацию
+			"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",	// Время кеширования страниц для обратной навигации
+			"PAGER_SHOW_ALL" => "Y",	// Показывать ссылку "Все"
+			"DISPLAY_DATE" => "Y",	// Выводить дату элемента
+			"DISPLAY_NAME" => "Y",	// Выводить название элемента
+			"DISPLAY_PICTURE" => "Y",	// Выводить изображение для анонса
+			"DISPLAY_PREVIEW_TEXT" => "Y",	// Выводить текст анонса
+			"AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
+			),
+			false
+		);?>
+		<?
+		}
+		?>
+
+		<? if ( !isset($_REQUEST['add']) ) { ?>
+			<div class="col_3 col_4_w980 col_8_w640 col_pad20">
+				<br /><a class="button col_8 col_4_w640 text_center"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
+			</div>
+		<? } ?>
+
 	</div>
 </div>
