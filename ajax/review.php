@@ -58,19 +58,15 @@ if(isset($_REQUEST['submit'])){?>
 	// $rsSites = CSite::GetByID(SITE_ID);
 	// $arSite = $rsSites->Fetch();
 	// $to = $arSite['EMAIL'];
-	// $subject = "Contact Form: $name";
-	// $headers = "From: $email";
 
-	//mail($to, $subject, $message, $headers);
-
-	// отправка сообщения
-	// $arEventFields = array(
-	//	//"EMAIL_TO"    		=> $to,
-		// "AUTHOR"    		=> $name,
-		// "AUTHOR_EMAIL"      => $email,
-		// "TEXT"          	=> $message
-	// );
-	// $status = CEvent::Send("NEW_FEEDBACK_FroM", SITE_ID, $arEventFields);
+	//отправка сообщения
+	$arEventFields = array(
+		//"EMAIL_TO"    		=> $to,
+		"AUTHOR"    		=> $name,
+		"AUTHOR_EMAIL"      => $email,
+		"TEXT"          	=> $message
+	);
+	$status = CEvent::Send("NEW_FEEDBACK_FROM", SITE_ID, $arEventFields, 'N', 11);
 
 	// запись сообщения в инфоблок
 	$el = new CIBlockElement();
@@ -88,20 +84,6 @@ if(isset($_REQUEST['submit'])){?>
 	if(!($el->Add($arLoadProductArray))) {	
 		die("<div class='notify'>Error add feedback iblock: ".$el->LAST_ERROR."</div>");
 	}
-
-	// $detail_text = "Автор: $name \n Телефон: $email \n Текст сообщения: $message \n";
-	// $arLoadProductArray = Array(
-		// "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
-		// "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
-		// "IBLOCK_ID"      => $mail_iblock_id,
-		// "NAME"           => "Отзыв от " . $name,
-		// "ACTIVE"         => "Y",            // активен
-		// "DETAIL_TEXT"    => $detail_text
-	// );
-
-	// if(!($el->Add($arLoadProductArray))) {	
-		// die("<div class='notify'>Error add mail iblock: ".$el->LAST_ERROR."</div>");
-	// }
 	
 	?>
 	
