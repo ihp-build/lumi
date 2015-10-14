@@ -2,7 +2,7 @@
 
 <div class="main_preim">
 	<h2>Работать с нами легко и удобно</h2>
-	<div class="max_width mrg_b30 mrg_t30 clear_fix">
+	<div class="max_width mrg_t30 clear_fix">
 
 		<?foreach($arResult["ITEMS"] as $arItem) { ?>
 
